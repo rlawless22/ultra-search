@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp", "--api-key", "ctx7sk-815cd156-5f91-492a-9b1a-7961a8bae4fd"]
+    },
+    "ultra-search": {
+      "command": "python",
+      "args": ["-m", "ultra_search.mcp_server.server"],
+      "cwd": "/Users/safeshipdeveloper/Desktop/ultra-search",
+      "env": {
+        "PYTHONPATH": "/Users/safeshipdeveloper/Desktop/ultra-search/src"
+      }
+    }
+  }
+}

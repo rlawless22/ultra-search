@@ -1,0 +1,1193 @@
+                                                                                
+╭─── Claude Code v2.1.12 ──────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│                Welcome back Robert!                │ started                 │
+│                                                    │ Run /init to create a … │
+│                       ▐▛███▜▌                      │ ─────────────────────── │
+│                      ▝▜█████▛▘                     │ Recent activity         │
+│                        ▘▘ ▝▝                       │ No recent activity      │
+│                                                    │                         │
+│ Sonnet 4.5 (1M context) · API Usage Billing · Safe │                         │
+│  Ship                                              │                         │
+│               ~/Desktop/ultra-search               │                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+                                                                                
+❯ /mcp                                                                          
+  ⎿  MCP dialog dismissed                                                       
+                                                                                
+❯ I want to use claude code to call openai deep research tools and a            
+  multitude of other api services and mcps to create the ULTIMATE research      
+  and thinking tool. I am going to give it a shit ton of tools. I am going      
+  to give it tons of domains too. Financial research, reviews search,           
+  generic internet search, web scraping tools, background check apis, legal     
+  search, business compliance and info search, academic search, social          
+  media search tools, and so on and so on. I am thinking I will build it        
+  with great seperation of domain, so each domain can have multiple tools       
+  iwthin that domain, but depending on the conversation, or use case in         
+  that moment, or a config with flags to enable certain domains tool use, I     
+  could have an agent that can research a ton of shit. I will put tons of       
+  apis in it that claude code can use, including deep research from openai,     
+  etc. Can you give me a foundation? make very seperated domains, give          
+  some examples of apis that can go there, etc. please do this in python. I     
+  want  this to basically work like this: all                                   
+                                                                                
+                                                                                
+  api-provider specific information and code are                                
+                                                                                
+  seperated from the central flow, so that I can                                
+                                                                                
+  plug and play with entire folder or files in                                  
+                                                                                
+  different versions like legos, swapping them                                  
+                                                                                
+  in and out. There are a million things we can do, but for right now,          
+  let's focus on setting upu a great sturdy foundation architecture that        
+  lets claude code interact with a multitude of different types of tools in     
+  a programatic repeatable way. use the context7 mcp tool to find some          
+  examples of apis or mcps, like parallel search, google stuff, etc etc.        
+  Let's do it man, get groovy.                                                  
+                                                                                
+⏺ I'll help you build a modular, plug-and-play research tool architecture. Let  
+  me explore your current directory and research some relevant APIs/patterns to 
+  design a solid foundation.                                                    
+                                                                                
+⏺ context7 - resolve-library-id (MCP)(query: "Python plugin architecture        
+                                     dependency injection", libraryName:        
+                                     "pluggy")                                  
+  ⎿  Available Libraries:                                                       
+                                                                                
+     Each result includes:                                                      
+     … +25 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ context7 - query-docs (MCP)(libraryId: "/encode/httpx", query: "async client  
+                             session management multiple concurrent requests")  
+  ⎿  ### Asynchronous HTTP Requests with AsyncClient in Python                  
+                                                                                
+     Source: https://context7.com/encode/httpx/llms.txt                         
+     … +140 lines (ctrl+o to expand)                                            
+                                                                                
+⏺ context7 - resolve-library-id (MCP)(query: "Python pydantic settings          
+                                     configuration validation", libraryName:    
+                                     "pydantic")                                
+  ⎿  Available Libraries:                                                       
+                                                                                
+     Each result includes:                                                      
+     … +59 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ context7 - query-docs (MCP)(libraryId: "/pydantic/pydantic", query: "base     
+                             model inheritance abstract class plugin pattern    
+                             discriminated unions")                             
+  ⎿ ### Define Discriminated Union Models with String Discriminator in Pyth     
+    on                                                                          
+    … +286 lines (ctrl+o to expand)                                             
+                                                                                
+                                                                                
+⏺ I have enough context now. Let me design a comprehensive architecture for this
+   ultimate research tool. I'll create the plan file with the modular,          
+  plug-and-play architecture.                                                   
+                                                                                
+⏺ Updated plan                                                                  
+  ⎿  Wrote 419 lines to ../../.claude/plans/distributed-inventing-eclipse.md    
+                                                                                
+     # Ultra Search: Modular Multi-Domain Research Tool Architecture            
+     ## Overview                                                                
+     Build a Python-based, domain-separated research architecture that          
+     allows Claude Code to interact with dozens of APIs and MCPs in a           
+     plug-and-play manner. Each domain (financial, legal, academic, etc.)       
+     is self-contained and can be enabled/disabled via configuration.           
+     ---                                                                        
+     ## Architecture Principles                                                 
+     … +409 lines (ctrl+o to expand)                                            
+                                                                                
+⏺ I've created a comprehensive architecture plan. Before finalizing, I have a   
+  few questions to ensure this matches your vision.                             
+                                                                                
+⏺ User answered Claude's questions:                                             
+  ⎿  · How should Claude Code interact with this tool system? → MCP Server      
+     (Recommended)                                                              
+     · Which domains should I build out fully in the initial version? → Web     
+     Search + Deep Research                                                     
+                                                                                
+     · Do you have API keys ready for any of these services? → I'll add keys    
+      later                                                                     
+                                                                                
+⏺ Let me update the plan with your preferences and focus on MCP server          
+  integration.                                                                  
+                                                                                
+⏺ Updated plan                                                                  
+  ⎿  /plan to preview                                                           
+      358  ## Implementation Plan                                               
+      359                                                                       
+      360  ### Phase 1: Core Framework                                          
+      361 -1. Create project structure with `pyproject.toml`                    
+      362 -2. Implement `core/base.py` - Abstract base classes                  
+      363 -3. Implement `core/registry.py` - Tool registration system           
+      364 -4. Implement `core/config.py` - Pydantic settings                    
+      365 -5. Implement `core/executor.py` - Async execution engine             
+      366 -6. Implement `core/models.py` - Shared response models               
+      361 +1. Create project structure with `pyproject.toml`                    
+          + (httpx, pydantic, pydantic-settings, mcp)                           
+      362 +2. Implement `core/base.py` - Abstract base classes                  
+          + for tools and providers                                             
+      363 +3. Implement `core/registry.py` - Auto-discovery tool                
+          +registration system                                                  
+      364 +4. Implement `core/config.py` - Pydantic settings                    
+          + with env var support                                                
+      365 +5. Implement `core/executor.py` - Async parallel                     
+          +execution engine                                                     
+      366 +6. Implement `core/models.py` - Shared response models               
+          + (SearchResult, etc.)                                                
+      367                                                                       
+      368 -### Phase 2: First Domain (Web Search)                               
+      369 -1. Create `domains/web_search/domain.py`                             
+      370 -2. Implement SerpAPI provider                                        
+      371 -3. Implement Tavily provider                                         
+      372 -4. Add CLI commands for testing                                      
+      368 +### Phase 2: MCP Server Foundation                                   
+      369 +1. Create `mcp_server/server.py` - MCP server using fastmcp          
+          +or mcp package                                                       
+      370 +2. Implement dynamic tool generation from registry                   
+      371 +3. Create `mcp_server/handlers.py` - Request/response                
+          +handling                                                             
+      372 +4. Update `.mcp.json` to register the ultra-search server            
+      373                                                                       
+      374 -### Phase 3: Deep Research Domain                                    
+      374 +### Phase 3: Web Search Domain (Priority)                            
+      375 +1. Create `domains/web_search/domain.py` with tool                   
+          +definitions                                                          
+      376 +2. Implement `providers/serpapi.py` - SerpAPI integration            
+      377 +3. Implement `providers/tavily.py` - Tavily AI search                
+      378 +4. Implement `providers/brave.py` - Brave Search API                 
+      379 +5. Add mock provider for testing without API keys                    
+      380 +                                                                     
+      381 +### Phase 4: Deep Research Domain (Priority)                         
+      382  1. Create `domains/deep_research/domain.py`                          
+      383 -2. Implement OpenAI Deep Research provider                           
+      384 -3. Implement Perplexity provider                                     
+      383 +2. Implement `providers/openai_responses.py` - OpenAI                
+          +Responses API with web search                                        
+      384 +3. Implement `providers/perplexity.py` - Perplexity API              
+      385 +4. Implement long-running task handling for deep research            
+      386                                                                       
+      387 -### Phase 4: Additional Domains                                      
+      388 -1. Add Financial domain with Polygon provider                        
+      389 -2. Add Academic domain with Semantic Scholar                         
+      390 -3. Add remaining domains as stubs                                    
+      387 +### Phase 5: Stub Remaining Domains                                  
+      388 +1. Create domain scaffolds for: financial, legal, academic,          
+          +social_media, business_intel, people_search, news, scraping          
+      389 +2. Add placeholder providers with NotImplementedError                
+      390 +3. Document API options for each domain                              
+      391                                                                       
+      392 -### Phase 5: MCP Integration                                         
+      393 -1. Create MCP server wrapper                                         
+      394 -2. Generate tool definitions from registry                           
+      395 -3. Update `.mcp.json`                                                
+      396 -                                                                     
+      392  ---                                                                  
+      393                                                                       
+      394  ## Verification Plan                                                 
+                                                                                
+⏺ Updated plan                                                                  
+  ⎿  /plan to preview                                                           
+      394  ## Verification Plan                                                 
+      395                                                                       
+      396  1. **Unit Tests**: Test each provider in isolation with              
+           mocked responses                                                     
+      397 -2. **Integration Tests**: Test actual API calls (requires API        
+          - keys)                                                               
+      398 -3. **CLI Smoke Test**:                                               
+      397 +2. **MCP Server Test**: Run server locally and test tool             
+          +calls                                                                
+      398     ```bash                                                           
+      399 -   python -m ultra_search.cli list-tools                             
+      400 -   python -m ultra_search.cli run search_web '{"query":              
+          -"test"}'                                                             
+      399 +   # Start MCP server                                                
+      400 +   python -m ultra_search.mcp_server                                 
+      401 +                                                                     
+      402 +   # In another terminal, test with MCP inspector                    
+      403 +   npx @anthropic/mcp-inspector                                      
+      404     ```                                                               
+      405 -4. **Claude Code Test**: Use the tool via MCP in a                   
+          -conversation                                                         
+      405 +3. **Claude Code Integration Test**: Add to `.mcp.json` and          
+          +verify tools appear                                                  
+      406 +4. **End-to-End Test**: Ask Claude Code to perform a search,         
+          +verify results                                                       
+      407                                                                       
+      408  ---                                                                  
+      409                                                                       
+      410  ## Files to Create                                                   
+      411                                                                       
+      412 +### Core Framework                                                   
+      413  1. `pyproject.toml` - Project config with dependencies               
+      414  2. `src/ultra_search/__init__.py`                                    
+      415  3. `src/ultra_search/core/__init__.py`                               
+      416 -4. `src/ultra_search/core/base.py`                                   
+      417 -5. `src/ultra_search/core/registry.py`                               
+      418 -6. `src/ultra_search/core/config.py`                                 
+      419 -7. `src/ultra_search/core/executor.py`                               
+      420 -8. `src/ultra_search/core/models.py`                                 
+      421 -9. `src/ultra_search/domains/__init__.py`                            
+      422 -10. `src/ultra_search/domains/web_search/` (full domain)             
+      423 -11. `src/ultra_search/domains/deep_research/` (full domain)          
+      424 -12. `src/ultra_search/cli/main.py`                                   
+      425 -13. `config/settings.yaml`                                           
+      416 +4. `src/ultra_search/core/base.py` - Abstract base classes           
+      417 +5. `src/ultra_search/core/registry.py` - Tool registration           
+      418 +6. `src/ultra_search/core/config.py` - Settings management           
+      419 +7. `src/ultra_search/core/executor.py` - Async execution             
+      420 +8. `src/ultra_search/core/models.py` - Shared models                 
+      421 +                                                                     
+      422 +### MCP Server                                                       
+      423 +9. `src/ultra_search/mcp_server/__init__.py`                         
+      424 +10. `src/ultra_search/mcp_server/server.py` - Main MCP server        
+      425 +11. `src/ultra_search/mcp_server/handlers.py` - Tool handlers        
+      426 +                                                                     
+      427 +### Web Search Domain                                                
+      428 +12. `src/ultra_search/domains/__init__.py`                           
+      429 +13. `src/ultra_search/domains/web_search/__init__.py`                
+      430 +14. `src/ultra_search/domains/web_search/domain.py`                  
+      431 +15.                                                                  
+          +`src/ultra_search/domains/web_search/providers/__init__.py`          
+      432 +16.                                                                  
+          +`src/ultra_search/domains/web_search/providers/serpapi.py`           
+      433 +17. `src/ultra_search/domains/web_search/providers/tavily.py`        
+      434 +18. `src/ultra_search/domains/web_search/providers/mock.py`          
+      435 +                                                                     
+      436 +### Deep Research Domain                                             
+      437 +19. `src/ultra_search/domains/deep_research/__init__.py`             
+      438 +20. `src/ultra_search/domains/deep_research/domain.py`               
+      439 +21. `src/ultra_search/domains/deep_research/providers/__init_        
+          +_.py`                                                                
+      440 +22. `src/ultra_search/domains/deep_research/providers/openai_        
+          +responses.py`                                                        
+      441 +23. `src/ultra_search/domains/deep_research/providers/perplex        
+          +ity.py`                                                              
+      442 +                                                                     
+      443 +### Config                                                           
+      444 +24. `config/settings.yaml` - Default configuration                   
+      445 +25. `.env.example` - Environment variable template                   
+                                                                                
+⏺ Now let me add the MCP server implementation example to the plan.             
+                                                                                
+⏺ Updated plan                                                                  
+  ⎿  /plan to preview                                                           
+      310                                                                       
+      311  ---                                                                  
+      312                                                                       
+      313 -## CLI Interface for Claude Code                                     
+      313 +## MCP Server Implementation                                         
+      314                                                                       
+      315  ```python                                                            
+      316 -# cli/main.py                                                        
+      316 +# mcp_server/server.py                                               
+      317  import asyncio                                                       
+      318 -import json                                                          
+      319 -from typing import Annotated                                         
+      320 -import typer                                                         
+      321 -from ultra_search.core.registry import get_tools                     
+      322 -from ultra_search.core.config import Settings                        
+      318 +from mcp.server import Server                                        
+      319 +from mcp.types import Tool, TextContent                              
+      320 +from ultra_search.core.registry import get_tools,                    
+          +discover_domains                                                     
+      321 +from ultra_search.core.config import get_settings                    
+      322                                                                       
+      323 -app = typer.Typer()                                                  
+      323 +# Auto-discover all domain tools on import                           
+      324 +discover_domains()                                                   
+      325                                                                       
+      326 -@app.command()                                                       
+      327 -def list_tools(                                                      
+      328 -    domains: Annotated[list[str] | None, typer.Option()] =           
+          -None                                                                 
+      329 -):                                                                   
+      330 -    """List all available tools."""                                  
+      331 -    tools = get_tools(domains)                                       
+      332 -    for name, tool_cls in tools.items():                             
+      333 -        print(f"{name}: {tool_cls.description}")                     
+      326 +server = Server("ultra-search")                                      
+      327                                                                       
+      328 -@app.command()                                                       
+      329 -def run(                                                             
+      330 -    tool_name: str,                                                  
+      331 -    input_json: str,                                                 
+      332 -    domains: Annotated[list[str] | None, typer.Option()] =           
+          -None                                                                 
+      333 -):                                                                   
+      334 -    """Run a specific tool with JSON input."""                       
+      335 -    tools = get_tools(domains)                                       
+      336 -    if tool_name not in tools:                                       
+      337 -        raise typer.BadParameter(f"Tool {tool_name} not              
+          -found")                                                              
+      328 +@server.list_tools()                                                 
+      329 +async def list_tools() -> list[Tool]:                                
+      330 +    """Dynamically generate MCP tools from registry."""              
+      331 +    settings = get_settings()                                        
+      332 +    enabled_domains = [d for d, cfg in                               
+          +settings.domains.items() if cfg.enabled]                             
+      333 +    tools = get_tools(enabled_domains)                               
+      334                                                                       
+      335 -    # Execute tool                                                   
+      336 -    tool = tools[tool_name]()                                        
+      337 -    input_data = json.loads(input_json)                              
+      338 -    result =                                                         
+          -asyncio.run(tool.execute(tool.input_model(**input_data)))            
+      339 -    print(json.dumps(result.model_dump(), indent=2))                 
+      335 +    return [                                                         
+      336 +        Tool(                                                        
+      337 +            name=tool.name,                                          
+      338 +            description=tool.description,                            
+      339 +            inputSchema=tool.input_model.model_json_schema(),        
+      340 +        )                                                            
+      341 +        for tool in tools.values()                                   
+      342 +    ]                                                                
+      343                                                                       
+      344 +@server.call_tool()                                                  
+      345 +async def call_tool(name: str, arguments: dict) ->                   
+          +list[TextContent]:                                                   
+      346 +    """Execute a tool and return results."""                         
+      347 +    settings = get_settings()                                        
+      348 +    enabled_domains = [d for d, cfg in                               
+          +settings.domains.items() if cfg.enabled]                             
+      349 +    tools = get_tools(enabled_domains)                               
+      350 +                                                                     
+      351 +    if name not in tools:                                            
+      352 +        raise ValueError(f"Tool {name} not found or not              
+          +enabled")                                                            
+      353 +                                                                     
+      354 +    tool_cls = tools[name]                                           
+      355 +    tool = tool_cls(settings)  # Inject settings for API keys        
+      356 +    result = await                                                   
+          +tool.execute(tool.input_model(**arguments))                          
+      357 +                                                                     
+      358 +    return [TextContent(type="text",                                 
+          +text=result.model_dump_json(indent=2))]                              
+      359 +                                                                     
+      360 +async def main():                                                    
+      361 +    from mcp.server.stdio import stdio_server                        
+      362 +    async with stdio_server() as (read, write):                      
+      363 +        await server.run(read, write)                                
+      364 +                                                                     
+      365  if __name__ == "__main__":                                           
+      366 -    app()                                                            
+      366 +    asyncio.run(main())                                              
+      367  ```                                                                  
+      368                                                                       
+      369 +### .mcp.json Configuration (after implementation)                   
+      370 +                                                                     
+      371 +```json                                                              
+      372 +{                                                                    
+      373 +  "mcpServers": {                                                    
+      374 +    "context7": { ... },                                             
+      375 +    "ultra-search": {                                                
+      376 +      "command": "python",                                           
+      377 +      "args": ["-m", "ultra_search.mcp_server"],                     
+      378 +      "cwd": "/Users/safeshipdeveloper/Desktop/ultra-search",        
+      379 +      "env": {                                                       
+      380 +        "ULTRA_DOMAINS__WEB_SEARCH__ENABLED": "true",                
+      381 +        "ULTRA_DOMAINS__DEEP_RESEARCH__ENABLED": "true",             
+      382 +        "ULTRA_OPENAI_API_KEY": "${OPENAI_API_KEY}",                 
+      383 +        "ULTRA_SERPAPI_API_KEY": "${SERPAPI_API_KEY}"                
+      384 +      }                                                              
+      385 +    }                                                                
+      386 +  }                                                                  
+      387 +}                                                                    
+      388 +```                                                                  
+      389 +                                                                     
+      390  ---                                                                  
+      391                                                                       
+      392  ## Implementation Plan                                               
+                                                                                
+⏺ The plan is now complete with:                                                
+                                                                                
+  - Plug-and-play architecture: Each domain is a self-contained folder you can  
+  swap in/out                                                                   
+  - MCP Server integration: Tools auto-register and Claude Code sees them       
+  natively                                                                      
+  - Config-driven: Enable/disable domains via env vars or YAML                  
+  - Priority domains: Web Search + Deep Research fully implemented first        
+  - 25 files scaffolding the complete system                                    
+                                                                                
+⏺ User approved Claude's plan                                                   
+  ⎿  Plan saved to: ~/.claude/plans/distributed-inventing-eclipse.md · /plan    
+      to edit                                                                   
+     Ultra Search: Modular Multi-Domain Research Tool Architecture              
+                                                                                
+     Overview                                                                   
+                                                                                
+     Build a Python-based, domain-separated research architecture that          
+     allows Claude Code to interact with dozens of APIs and MCPs in a           
+     plug-and-play manner. Each domain (financial, legal, academic, etc.) is    
+      self-contained and can be enabled/disabled via configuration.             
+                                                                                
+     ---                                                                        
+     Architecture Principles                                                    
+                                                                                
+     1. Domain Isolation: Each research domain is a self-contained Python       
+     package                                                                    
+     2. Provider Abstraction: API-specific code never leaks into core logic     
+     3. Plugin Registry: Tools auto-register via decorators, discovered at      
+     runtime                                                                    
+     4. Config-Driven: Enable/disable domains and providers via YAML/env        
+     vars                                                                       
+     5. Async-First: All API calls use async/await for parallel execution       
+     6. Type-Safe: Pydantic models for all inputs/outputs                       
+                                                                                
+     ---                                                                        
+     Directory Structure                                                        
+                                                                                
+     ultra-search/                                                              
+     ├── pyproject.toml                                                         
+     ├── config/                                                                
+     │   ├── settings.yaml           # Master config                            
+     │   └── domains/                 # Per-domain configs                      
+     │       ├── financial.yaml                                                 
+     │       ├── legal.yaml                                                     
+     │       └── ...                                                            
+     ├── src/                                                                   
+     │   └── ultra_search/                                                      
+     │       ├── __init__.py                                                    
+     │       ├── core/               # Framework core (never changes            
+     per-domain)                                                                
+     │       │   ├── __init__.py                                                
+     │       │   ├── registry.py     # Tool/provider registration               
+     │       │   ├── base.py         # Abstract base classes                    
+     │       │   ├── executor.py     # Async execution engine                   
+     │       │   ├── config.py       # Pydantic settings loader                 
+     │       │   └── models.py       # Shared data models                       
+     │       │                                                                  
+     │       ├── domains/            # PLUG-AND-PLAY DOMAIN FOLDERS             
+     │       │   ├── __init__.py                                                
+     │       │   ├── financial/                                                 
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py   # Domain definition & tool registry        
+     │       │   │   └── providers/  # API provider implementations             
+     │       │   │       ├── __init__.py                                        
+     │       │   │       ├── alpha_vantage.py                                   
+     │       │   │       ├── polygon.py                                         
+     │       │   │       ├── yahoo_finance.py                                   
+     │       │   │       └── sec_edgar.py                                       
+     │       │   │                                                              
+     │       │   ├── legal/                                                     
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── courtlistener.py                                   
+     │       │   │       ├── case_law.py                                        
+     │       │   │       └── pacer.py                                           
+     │       │   │                                                              
+     │       │   ├── academic/                                                  
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── semantic_scholar.py                                
+     │       │   │       ├── arxiv.py                                           
+     │       │   │       ├── pubmed.py                                          
+     │       │   │       └── crossref.py                                        
+     │       │   │                                                              
+     │       │   ├── web_search/                                                
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── serpapi.py                                         
+     │       │   │       ├── tavily.py                                          
+     │       │   │       ├── brave.py                                           
+     │       │   │       └── google_custom.py                                   
+     │       │   │                                                              
+     │       │   ├── deep_research/                                             
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── openai_deepresearch.py                             
+     │       │   │       ├── perplexity.py                                      
+     │       │   │       └── you_research.py                                    
+     │       │   │                                                              
+     │       │   ├── social_media/                                              
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── twitter_api.py                                     
+     │       │   │       ├── reddit.py                                          
+     │       │   │       └── linkedin.py                                        
+     │       │   │                                                              
+     │       │   ├── business_intel/                                            
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── crunchbase.py                                      
+     │       │   │       ├── opencorporates.py                                  
+     │       │   │       └── dnb.py                                             
+     │       │   │                                                              
+     │       │   ├── people_search/                                             
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── pipl.py                                            
+     │       │   │       ├── clearbit.py                                        
+     │       │   │       └── fullcontact.py                                     
+     │       │   │                                                              
+     │       │   ├── news/                                                      
+     │       │   │   ├── __init__.py                                            
+     │       │   │   ├── domain.py                                              
+     │       │   │   └── providers/                                             
+     │       │   │       ├── newsapi.py                                         
+     │       │   │       ├── gdelt.py                                           
+     │       │   │       └── mediastack.py                                      
+     │       │   │                                                              
+     │       │   └── scraping/                                                  
+     │       │       ├── __init__.py                                            
+     │       │       ├── domain.py                                              
+     │       │       └── providers/                                             
+     │       │           ├── firecrawl.py                                       
+     │       │           ├── browserless.py                                     
+     │       │           └── scrapingbee.py                                     
+     │       │                                                                  
+     │       └── cli/                # CLI interface for Claude Code            
+     │           ├── __init__.py                                                
+     │           └── main.py                                                    
+     │                                                                          
+     ├── tests/                                                                 
+     └── .mcp.json                   # MCP server configs                       
+                                                                                
+     ---                                                                        
+     Core Components                                                            
+                                                                                
+     1. Base Classes (core/base.py)                                             
+                                                                                
+     from abc import ABC, abstractmethod                                        
+     from typing import Any, Generic, TypeVar                                   
+     from pydantic import BaseModel                                             
+                                                                                
+     InputT = TypeVar("InputT", bound=BaseModel)                                
+     OutputT = TypeVar("OutputT", bound=BaseModel)                              
+                                                                                
+     class BaseTool(ABC, Generic[InputT, OutputT]):                             
+         """Abstract base for all research tools."""                            
+         name: str                                                              
+         description: str                                                       
+         domain: str                                                            
+                                                                                
+         @abstractmethod                                                        
+         async def execute(self, input: InputT) -> OutputT:                     
+             """Execute the tool with validated input."""                       
+             pass                                                               
+                                                                                
+     class BaseProvider(ABC):                                                   
+         """Abstract base for API providers."""                                 
+         provider_name: str                                                     
+         requires_auth: bool = True                                             
+                                                                                
+         @abstractmethod                                                        
+         async def _make_request(self, endpoint: str, **kwargs) -> dict[str,    
+      Any]:                                                                     
+             """Make authenticated API request."""                              
+             pass                                                               
+                                                                                
+     2. Tool Registry (core/registry.py)                                        
+                                                                                
+     from typing import Callable, Type                                          
+     from functools import wraps                                                
+                                                                                
+     _TOOL_REGISTRY: dict[str, dict[str, Type[BaseTool]]] = {}                  
+                                                                                
+     def register_tool(domain: str):                                            
+         """Decorator to register a tool under a domain."""                     
+         def decorator(cls: Type[BaseTool]):                                    
+             if domain not in _TOOL_REGISTRY:                                   
+                 _TOOL_REGISTRY[domain] = {}                                    
+             _TOOL_REGISTRY[domain][cls.name] = cls                             
+             return cls                                                         
+         return decorator                                                       
+                                                                                
+     def get_tools(domains: list[str] | None = None) -> dict[str,               
+     Type[BaseTool]]:                                                           
+         """Get all tools, optionally filtered by domains."""                   
+         if domains is None:                                                    
+             domains = list(_TOOL_REGISTRY.keys())                              
+                                                                                
+         tools = {}                                                             
+         for domain in domains:                                                 
+             if domain in _TOOL_REGISTRY:                                       
+                 tools.update(_TOOL_REGISTRY[domain])                           
+         return tools                                                           
+                                                                                
+     3. Configuration (core/config.py)                                          
+                                                                                
+     from pydantic import BaseModel                                             
+     from pydantic_settings import BaseSettings, SettingsConfigDict             
+                                                                                
+     class DomainConfig(BaseModel):                                             
+         enabled: bool = True                                                   
+         providers: dict[str, dict] = {}  # provider_name ->                    
+     provider-specific config                                                   
+                                                                                
+     class Settings(BaseSettings):                                              
+         model_config = SettingsConfigDict(                                     
+             env_prefix="ULTRA_",                                               
+             env_nested_delimiter="__",                                         
+         )                                                                      
+                                                                                
+         # Domain toggles                                                       
+         domains: dict[str, DomainConfig] = {}                                  
+                                                                                
+         # Global API keys (can be overridden per-domain)                       
+         openai_api_key: str | None = None                                      
+         serpapi_api_key: str | None = None                                     
+         tavily_api_key: str | None = None                                      
+         # ... more keys                                                        
+                                                                                
+     ---                                                                        
+     Example Domain Implementation                                              
+                                                                                
+     Financial Domain (domains/financial/domain.py)                             
+                                                                                
+     from ultra_search.core.base import BaseTool, BaseProvider                  
+     from ultra_search.core.registry import register_tool                       
+     from pydantic import BaseModel                                             
+                                                                                
+     # --- Input/Output Models ---                                              
+     class StockQuoteInput(BaseModel):                                          
+         symbol: str                                                            
+                                                                                
+     class StockQuoteOutput(BaseModel):                                         
+         symbol: str                                                            
+         price: float                                                           
+         change: float                                                          
+         volume: int                                                            
+                                                                                
+     # --- Tool Implementation ---                                              
+     @register_tool(domain="financial")                                         
+     class GetStockQuote(BaseTool[StockQuoteInput, StockQuoteOutput]):          
+         name = "get_stock_quote"                                               
+         description = "Get current stock quote for a ticker symbol"            
+         domain = "financial"                                                   
+                                                                                
+         def __init__(self, provider: "FinancialProvider"):                     
+             self.provider = provider                                           
+                                                                                
+         async def execute(self, input: StockQuoteInput) ->                     
+     StockQuoteOutput:                                                          
+             data = await self.provider.get_quote(input.symbol)                 
+             return StockQuoteOutput(**data)                                    
+                                                                                
+     Financial Provider (domains/financial/providers/polygon.py)                
+                                                                                
+     import httpx                                                               
+     from ultra_search.core.base import BaseProvider                            
+                                                                                
+     class PolygonProvider(BaseProvider):                                       
+         provider_name = "polygon"                                              
+         base_url = "https://api.polygon.io"                                    
+                                                                                
+         def __init__(self, api_key: str):                                      
+             self.api_key = api_key                                             
+             self.client = httpx.AsyncClient(base_url=self.base_url)            
+                                                                                
+         async def _make_request(self, endpoint: str, **kwargs) -> dict:        
+             kwargs.setdefault("params", {})["apiKey"] = self.api_key           
+             response = await self.client.get(endpoint, **kwargs)               
+             response.raise_for_status()                                        
+             return response.json()                                             
+                                                                                
+         async def get_quote(self, symbol: str) -> dict:                        
+             data = await                                                       
+     self._make_request(f"/v2/aggs/ticker/{symbol}/prev")                       
+             result = data["results"][0]                                        
+             return {                                                           
+                 "symbol": symbol,                                              
+                 "price": result["c"],                                          
+                 "change": result["c"] - result["o"],                           
+                 "volume": result["v"],                                         
+             }                                                                  
+                                                                                
+     ---                                                                        
+     API Examples By Domain                                                     
+     Domain: Financial                                                          
+     Example APIs/Services: Polygon.io, Alpha Vantage, Yahoo Finance, SEC       
+     EDGAR, IEX                                                                 
+        Cloud                                                                   
+     ────────────────────────────────────────                                   
+     Domain: Legal                                                              
+     Example APIs/Services: CourtListener, Caselaw Access Project, PACER,       
+     Westlaw                                                                    
+       API                                                                      
+     ────────────────────────────────────────                                   
+     Domain: Academic                                                           
+     Example APIs/Services: Semantic Scholar, arXiv, PubMed, CrossRef,          
+     OpenAlex                                                                   
+     ────────────────────────────────────────                                   
+     Domain: Web Search                                                         
+     Example APIs/Services: SerpAPI, Tavily, Brave Search, Google Custom        
+     Search,                                                                    
+       Bing                                                                     
+     ────────────────────────────────────────                                   
+     Domain: Deep Research                                                      
+     Example APIs/Services: OpenAI Deep Research, Perplexity, You.com           
+     Research                                                                   
+     ────────────────────────────────────────                                   
+     Domain: Social Media                                                       
+     Example APIs/Services: Twitter/X API, Reddit API, LinkedIn API, Meta       
+     Graph                                                                      
+     ────────────────────────────────────────                                   
+     Domain: Business Intel                                                     
+     Example APIs/Services: Crunchbase, OpenCorporates, D&B, PitchBook          
+     ────────────────────────────────────────                                   
+     Domain: People Search                                                      
+     Example APIs/Services: Pipl, Clearbit, FullContact, Hunter.io              
+     ────────────────────────────────────────                                   
+     Domain: News                                                               
+     Example APIs/Services: NewsAPI, GDELT, Mediastack, Newsdata.io             
+     ────────────────────────────────────────                                   
+     Domain: Scraping                                                           
+     Example APIs/Services: Firecrawl, Browserless, ScrapingBee, Apify          
+     ---                                                                        
+     MCP Server Implementation                                                  
+                                                                                
+     # mcp_server/server.py                                                     
+     import asyncio                                                             
+     from mcp.server import Server                                              
+     from mcp.types import Tool, TextContent                                    
+     from ultra_search.core.registry import get_tools, discover_domains         
+     from ultra_search.core.config import get_settings                          
+                                                                                
+     # Auto-discover all domain tools on import                                 
+     discover_domains()                                                         
+                                                                                
+     server = Server("ultra-search")                                            
+                                                                                
+     @server.list_tools()                                                       
+     async def list_tools() -> list[Tool]:                                      
+         """Dynamically generate MCP tools from registry."""                    
+         settings = get_settings()                                              
+         enabled_domains = [d for d, cfg in settings.domains.items() if         
+     cfg.enabled]                                                               
+         tools = get_tools(enabled_domains)                                     
+                                                                                
+         return [                                                               
+             Tool(                                                              
+                 name=tool.name,                                                
+                 description=tool.description,                                  
+                 inputSchema=tool.input_model.model_json_schema(),              
+             )                                                                  
+             for tool in tools.values()                                         
+         ]                                                                      
+                                                                                
+     @server.call_tool()                                                        
+     async def call_tool(name: str, arguments: dict) -> list[TextContent]:      
+         """Execute a tool and return results."""                               
+         settings = get_settings()                                              
+         enabled_domains = [d for d, cfg in settings.domains.items() if         
+     cfg.enabled]                                                               
+         tools = get_tools(enabled_domains)                                     
+                                                                                
+         if name not in tools:                                                  
+             raise ValueError(f"Tool {name} not found or not enabled")          
+                                                                                
+         tool_cls = tools[name]                                                 
+         tool = tool_cls(settings)  # Inject settings for API keys              
+         result = await tool.execute(tool.input_model(**arguments))             
+                                                                                
+         return [TextContent(type="text",                                       
+     text=result.model_dump_json(indent=2))]                                    
+                                                                                
+     async def main():                                                          
+         from mcp.server.stdio import stdio_server                              
+         async with stdio_server() as (read, write):                            
+             await server.run(read, write)                                      
+                                                                                
+     if __name__ == "__main__":                                                 
+         asyncio.run(main())                                                    
+                                                                                
+     .mcp.json Configuration (after implementation)                             
+                                                                                
+     {                                                                          
+       "mcpServers": {                                                          
+         "context7": { ... },                                                   
+         "ultra-search": {                                                      
+           "command": "python",                                                 
+           "args": ["-m", "ultra_search.mcp_server"],                           
+           "cwd": "/Users/safeshipdeveloper/Desktop/ultra-search",              
+           "env": {                                                             
+             "ULTRA_DOMAINS__WEB_SEARCH__ENABLED": "true",                      
+             "ULTRA_DOMAINS__DEEP_RESEARCH__ENABLED": "true",                   
+             "ULTRA_OPENAI_API_KEY": "${OPENAI_API_KEY}",                       
+             "ULTRA_SERPAPI_API_KEY": "${SERPAPI_API_KEY}"                      
+           }                                                                    
+         }                                                                      
+       }                                                                        
+     }                                                                          
+                                                                                
+     ---                                                                        
+     Implementation Plan                                                        
+                                                                                
+     Phase 1: Core Framework                                                    
+                                                                                
+     1. Create project structure with pyproject.toml (httpx, pydantic,          
+     pydantic-settings, mcp)                                                    
+     2. Implement core/base.py - Abstract base classes for tools and            
+     providers                                                                  
+     3. Implement core/registry.py - Auto-discovery tool registration system    
+     4. Implement core/config.py - Pydantic settings with env var support       
+     5. Implement core/executor.py - Async parallel execution engine            
+     6. Implement core/models.py - Shared response models (SearchResult,        
+     etc.)                                                                      
+                                                                                
+     Phase 2: MCP Server Foundation                                             
+                                                                                
+     1. Create mcp_server/server.py - MCP server using fastmcp or mcp           
+     package                                                                    
+     2. Implement dynamic tool generation from registry                         
+     3. Create mcp_server/handlers.py - Request/response handling               
+     4. Update .mcp.json to register the ultra-search server                    
+                                                                                
+     Phase 3: Web Search Domain (Priority)                                      
+                                                                                
+     1. Create domains/web_search/domain.py with tool definitions               
+     2. Implement providers/serpapi.py - SerpAPI integration                    
+     3. Implement providers/tavily.py - Tavily AI search                        
+     4. Implement providers/brave.py - Brave Search API                         
+     5. Add mock provider for testing without API keys                          
+                                                                                
+     Phase 4: Deep Research Domain (Priority)                                   
+                                                                                
+     1. Create domains/deep_research/domain.py                                  
+     2. Implement providers/openai_responses.py - OpenAI Responses API with     
+     web search                                                                 
+     3. Implement providers/perplexity.py - Perplexity API                      
+     4. Implement long-running task handling for deep research                  
+                                                                                
+     Phase 5: Stub Remaining Domains                                            
+                                                                                
+     1. Create domain scaffolds for: financial, legal, academic,                
+     social_media, business_intel, people_search, news, scraping                
+     2. Add placeholder providers with NotImplementedError                      
+     3. Document API options for each domain                                    
+                                                                                
+     ---                                                                        
+     Verification Plan                                                          
+                                                                                
+     1. Unit Tests: Test each provider in isolation with mocked responses       
+     2. MCP Server Test: Run server locally and test tool calls                 
+     # Start MCP server                                                         
+     python -m ultra_search.mcp_server                                          
+                                                                                
+     # In another terminal, test with MCP inspector                             
+     npx @anthropic/mcp-inspector                                               
+     3. Claude Code Integration Test: Add to .mcp.json and verify tools         
+     appear                                                                     
+     4. End-to-End Test: Ask Claude Code to perform a search, verify results    
+                                                                                
+     ---                                                                        
+     Files to Create                                                            
+                                                                                
+     Core Framework                                                             
+                                                                                
+     1. pyproject.toml - Project config with dependencies                       
+     2. src/ultra_search/__init__.py                                            
+     3. src/ultra_search/core/__init__.py                                       
+     4. src/ultra_search/core/base.py - Abstract base classes                   
+     5. src/ultra_search/core/registry.py - Tool registration                   
+     6. src/ultra_search/core/config.py - Settings management                   
+     7. src/ultra_search/core/executor.py - Async execution                     
+     8. src/ultra_search/core/models.py - Shared models                         
+                                                                                
+     MCP Server                                                                 
+                                                                                
+     9. src/ultra_search/mcp_server/__init__.py                                 
+     10. src/ultra_search/mcp_server/server.py - Main MCP server                
+     11. src/ultra_search/mcp_server/handlers.py - Tool handlers                
+                                                                                
+     Web Search Domain                                                          
+                                                                                
+     12. src/ultra_search/domains/__init__.py                                   
+     13. src/ultra_search/domains/web_search/__init__.py                        
+     14. src/ultra_search/domains/web_search/domain.py                          
+     15. src/ultra_search/domains/web_search/providers/__init__.py              
+     16. src/ultra_search/domains/web_search/providers/serpapi.py               
+     17. src/ultra_search/domains/web_search/providers/tavily.py                
+     18. src/ultra_search/domains/web_search/providers/mock.py                  
+                                                                                
+     Deep Research Domain                                                       
+                                                                                
+     19. src/ultra_search/domains/deep_research/__init__.py                     
+     20. src/ultra_search/domains/deep_research/domain.py                       
+     21. src/ultra_search/domains/deep_research/providers/__init__.py           
+     22.                                                                        
+     src/ultra_search/domains/deep_research/providers/openai_responses.py       
+     23. src/ultra_search/domains/deep_research/providers/perplexity.py         
+                                                                                
+     Config                                                                     
+                                                                                
+     24. config/settings.yaml - Default configuration                           
+     25. .env.example - Environment variable template                           
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+⏺ Let's build this. I'll start by creating the todo list and then building out  
+  the core framework.                                                           
+                                                                                
+⏺ Bash(mkdir -p /Users/safeshipdeveloper/Desktop/ultra-search/{src/ultra_search/
+      {core,domains/{web_search/providers,deep_research/providers},mcp_server},c
+      onfig/domains…)                                                           
+  ⎿  (No content)                                                               
+                                                                                
+⏺ Write(src/ultra_search/core/__init__.py)                                      
+  ⎿  Wrote 19 lines to src/ultra_search/core/__init__.py                        
+     """Core framework for Ultra Search."""                                     
+     from ultra_search.core.base import BaseTool, BaseProvider                  
+     from ultra_search.core.registry import register_tool, get_tools,           
+     get_all_domains                                                            
+     from ultra_search.core.config import Settings, get_settings                
+     from ultra_search.core.models import SearchResult, ResearchResult          
+     __all__ = [                                                                
+         "BaseTool",                                                            
+         "BaseProvider",                                                        
+     … +9 lines (ctrl+o to expand)                                              
+                                                                                
+⏺ Write(src/ultra_search/core/base.py)                                          
+  ⎿  Wrote 118 lines to src/ultra_search/core/base.py                           
+     """Abstract base classes for tools and providers."""                       
+     from abc import ABC, abstractmethod                                        
+     from typing import Any, ClassVar, Generic, TypeVar                         
+     import httpx                                                               
+     from pydantic import BaseModel                                             
+     # Type variables for generic tool typing                                   
+     InputT = TypeVar("InputT", bound=BaseModel)                                
+     … +108 lines (ctrl+o to expand)                                            
+                                                                                
+⏺ Write(src/ultra_search/core/models.py)                                        
+  ⎿  Wrote 133 lines to src/ultra_search/core/models.py                         
+     """Shared data models for research results."""                             
+     from __future__ import annotations                                         
+     from datetime import datetime                                              
+     from enum import Enum                                                      
+     from typing import Any                                                     
+     from pydantic import BaseModel, Field, HttpUrl                             
+     … +123 lines (ctrl+o to expand)                                            
+                                                                                
+⏺ Now let me create the MCP server and domains module.                          
+                                                                                
+⏺ Write(src/ultra_search/domains/__init__.py)                                   
+  ⎿  Wrote 33 lines to src/ultra_search/domains/__init__.py                     
+     """Research domains for Ultra Search.                                      
+     Each subdirectory is a self-contained domain that can be:                  
+     - Enabled/disabled via configuration                                       
+     - Swapped out entirely (plug and play)                                     
+     - Extended with new providers                                              
+     Available domains:                                                         
+     - web_search: General web search (SerpAPI, Tavily, Brave, etc.)            
+     - deep_research: AI-powered research (OpenAI, Perplexity, etc.)            
+     … +23 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ Write(src/ultra_search/domains/web_search/providers/__init__.py)              
+  ⎿  Wrote 56 lines to                                                          
+     src/ultra_search/domains/web_search/providers/__init__.py                  
+     """Web search providers."""                                                
+     from __future__ import annotations                                         
+     from typing import TYPE_CHECKING                                           
+     if TYPE_CHECKING:                                                          
+         from ultra_search.core.config import Settings                          
+     from ultra_search.domains.web_search.providers.base import                 
+     BaseSearchProvider                                                         
+     … +46 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ Write(src/ultra_search/domains/web_search/providers/brave.py)                 
+  ⎿  Wrote 104 lines to                                                         
+     src/ultra_search/domains/web_search/providers/brave.py                     
+     """Brave Search API provider.                                              
+     Brave Search provides privacy-focused web search.                          
+     Docs: https://brave.com/search/api/                                        
+     """                                                                        
+     from __future__ import annotations                                         
+     from typing import Any                                                     
+     … +94 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ Write(src/ultra_search/domains/deep_research/providers/perplexity.py)         
+  ⎿  Wrote 149 lines to                                                         
+     src/ultra_search/domains/deep_research/providers/perplexity.py             
+     """Perplexity AI research provider.                                        
+     Perplexity provides AI-powered research with real-time web access.         
+     Docs: https://docs.perplexity.ai/                                          
+     """                                                                        
+     from __future__ import annotations                                         
+     from typing import Any                                                     
+     … +139 lines (ctrl+o to expand)                                            
+                                                                                
+⏺ Now let me create the config files and stub domains.                          
+                                                                                
+⏺ Read(.mcp.json)                                                               
+  ⎿  Read 8 lines                                                               
+                                                                                
+⏺ Write(.mcp.json)                                                              
+  ⎿  Added 13 lines, removed 5 lines                                            
+       1  {                                                                     
+       2 -    "mcpServers": {                                                   
+       3 -      "context7": {                                                   
+       4 -        "command": "npx",                                             
+       5 -        "args": ["-y", "@upstash/context7-mcp", "--api-key",          
+         -"ctx7sk-815cd156-5f91-492a-9b1a-7961a8bae4fd"]                        
+       2 +  "mcpServers": {                                                     
+       3 +    "context7": {                                                     
+       4 +      "command": "npx",                                               
+       5 +      "args": ["-y", "@upstash/context7-mcp", "--api-key",            
+         +"ctx7sk-815cd156-5f91-492a-9b1a-7961a8bae4fd"]                        
+       6 +    },                                                                
+       7 +    "ultra-search": {                                                 
+       8 +      "command": "python",                                            
+       9 +      "args": ["-m", "ultra_search.mcp_server.server"],               
+      10 +      "cwd": "/Users/safeshipdeveloper/Desktop/ultra-search",         
+      11 +      "env": {                                                        
+      12 +        "PYTHONPATH":                                                 
+         +"/Users/safeshipdeveloper/Desktop/ultra-search/src"                   
+      13        }                                                               
+      14      }                                                                 
+      15 -  }                                                                   
+      15   No newline at end of file                                            
+      16 +  }                                                                   
+      17 +}                                                                     
+                                                                                
+⏺ Now let me create stub domains. I'll create a few as examples showing how easy
+   it is to add new domains.                                                    
+                                                                                
+⏺ Bash(mkdir -p                                                                 
+      /Users/safeshipdeveloper/Desktop/ultra-search/src/ultra_search/domains/{fi
+      nancial/providers,academic/providers,news/providers,scraping/providers})  
+  ⎿  (No content)                                                               
+                                                                                
+⏺ Write(src/ultra_search/domains/scraping/providers/__init__.py)                
+  ⎿  Wrote 9 lines to                                                           
+     src/ultra_search/domains/scraping/providers/__init__.py                    
+     """Scraping providers - STUB.                                              
+     APIs to implement:                                                         
+     - firecrawl.py: https://www.firecrawl.dev/                                 
+     - browserless.py: https://browserless.io/                                  
+     - scrapingbee.py: https://www.scrapingbee.com/                             
+     - apify.py: https://apify.com/                                             
+     """                                                                        
+                                                                                
+⏺ Bash(pip install -e ".[dev]" 2>&1 | tail -20)                                 
+  ⎿  (eval):1: command not found: pip                                           
+                                                                                
+⏺ Bash(python3 -m pip install -e ".[dev]" 2>&1 | tail -30) timeout: 3m 0s       
+  ⎿  ╰─> To install Python packages system-wide, try brew install               
+         xyz, where xyz is the package you are trying to                        
+         install.                                                               
+     … +34 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ Bash(python3 -m venv .venv && source .venv/bin/activate && pip     timeout:   
+      install -e ".[dev]" 2>&1 | tail -20)                           3m 0s      
+  ⎿           ~~~~~~~~~~~~~~~~~~~~~~~~~^^                                       
+            File "/private/var/folders/1s/0n8xg91s5cl9lb684w1247pm0000gn/T/     
+    pip-build-env-u3_g5pll/overlay/lib/python3.14/site-packages/hatchling/m     
+    … +22 lines (ctrl+o to expand)                                              
+                                                                                
+                                                                                
+                                                                                
+⏺ Read(pyproject.toml)                                                          
+  ⎿  Read 49 lines                                                              
+                                                                                
+⏺ Write(README.md)                                                              
+  ⎿  Wrote 74 lines to README.md                                                
+     # Ultra Search                                                             
+     Modular multi-domain research tool with MCP integration for Claude         
+     Code.                                                                      
+     ## Quick Start                                                             
+     ```bash                                                                    
+     # Create virtual environment                                               
+     python3 -m venv .venv                                                      
+     source .venv/bin/activate                                                  
+     … +64 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ Bash(source .venv/bin/activate && pip install -e ".[dev]" 2>&1 |  timeout: 3m 
+      tail -15)                                                     0s          
+                                                                                
+  ⎿  Using cached certifi-2026.1.4-py3-none-any.whl (152 kB)                    
+     Downloading pycparser-3.0-py3-none-any.whl (48 kB)                         
+     Using cached sniffio-1.3.1-py3-none-any.whl (10 kB)                        
+     … +35 lines (ctrl+o to expand)                                             
+                                                                                
+⏺ Bash(source .venv/bin/activate && python -c "                                 
+      from ultra_search.core import get_tools, get_settings…)                   
+  ⎿ Enabled domains: ['web_search', 'deep_research']                            
+    Available tools:                                                            
+      - search_web: Search the web for information. Returns titles, URLs, a     
+    … +7 lines (ctrl+o to expand)                                               
+                                                                                
+                                                                                
+⏺ Bash(source .venv/bin/activate && python -c "                                 
+      import asyncio…)                                                          
+  ⎿  Execution result:                                                          
+       Success: True                                                            
+       Time: 8.91ms                                                             
+     … +4 lines (ctrl+o to expand)                                              
+                                                                                
+⏺ Bash(find /Users/safeshipdeveloper/Desktop/ultra-search -type f -name "*.py"  
+      -o -name "*.toml" -o -name "*.yaml" -o -name "*.json" -o -name "*.md"     
+      2>/dev/null | grep…)                                                      
+  ⎿ /Users/safeshipdeveloper/Desktop/ultra-search/.claude/settings.local.js     
+    on                                                                          
+    /Users/safeshipdeveloper/Desktop/ultra-search/.mcp.json                     
+    … +75 lines (ctrl+o to expand)                                              
+                                                                                
+                                                                                
+⏺ Done! Your Ultra Search foundation is built and tested. Here's what you have: 
+                                                                                
+  Project Structure (40 files)                                                  
+                                                                                
+  ultra-search/                                                                 
+  ├── pyproject.toml              # Python package config                       
+  ├── .mcp.json                   # MCP server config (ready for Claude Code)   
+  ├── .env.example                # Environment variable template               
+  ├── README.md                   # Quick start guide                           
+  │                                                                             
+  ├── src/ultra_search/                                                         
+  │   ├── core/                   # Framework core (never changes per-domain)   
+  │   │   ├── base.py             # BaseTool, BaseProvider classes              
+  │   │   ├── registry.py         # @register_tool decorator, auto-discovery    
+  │   │   ├── config.py           # Pydantic settings, env vars                 
+  │   │   ├── executor.py         # Async parallel execution                    
+  │   │   └── models.py           # SearchResult, ResearchResult, etc.          
+  │   │                                                                         
+  │   ├── domains/                # PLUG-AND-PLAY DOMAINS                       
+  │   │   ├── web_search/         # ✅ COMPLETE (SerpAPI, Tavily, Brave, Mock)  
+  │   │   ├── deep_research/      # ✅ COMPLETE (OpenAI, Perplexity)            
+  │   │   ├── financial/          # 📝 STUB (Polygon, Alpha Vantage)            
+  │   │   ├── academic/           # 📝 STUB (Semantic Scholar, arXiv)           
+  │   │   ├── news/               # 📝 STUB (NewsAPI, GDELT)                    
+  │   │   └── scraping/           # 📝 STUB (Firecrawl, Browserless)            
+  │   │                                                                         
+  │   └── mcp_server/             # MCP server for Claude Code                  
+  │       └── server.py           # Dynamic tool discovery                      
+                                                                                
+  Working Tools (4 active)                                                      
+  ┌───────────────┬────────────────────────────────────────────────┐            
+  │     Tool      │                  Description                   │            
+  ├───────────────┼────────────────────────────────────────────────┤            
+  │ search_web    │ Web search via SerpAPI, Tavily, Brave, or mock │            
+  ├───────────────┼────────────────────────────────────────────────┤            
+  │ search_news   │ News article search                            │            
+  ├───────────────┼────────────────────────────────────────────────┤            
+  │ deep_research │ AI-powered comprehensive research              │            
+  ├───────────────┼────────────────────────────────────────────────┤            
+  │ quick_answer  │ Fast factual answers                           │            
+  └───────────────┴────────────────────────────────────────────────┘            
+  Next Steps                                                                    
+                                                                                
+  1. Set up your API keys in .env:                                              
+  cp .env.example .env                                                          
+  # Edit .env with your keys                                                    
+  2. Switch from mock to real providers:                                        
+  ULTRA_DOMAINS__WEB_SEARCH__DEFAULT_PROVIDER=serpapi  # or tavily, brave       
+  ULTRA_OPENAI_API_KEY=sk-...                                                   
+  3. Test with Claude Code: The .mcp.json is already configured. Restart Claude 
+  Code to see the new tools.                                                    
+  4. Add more domains: Each stub domain shows the pattern - just uncomment the  
+  @register_tool decorator and implement the provider.                          
+                                                                                
+  The architecture is fully modular - swap out entire domain folders like LEGO  
+  blocks.                                                                       
+

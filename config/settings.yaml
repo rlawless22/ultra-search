@@ -1,0 +1,50 @@
+# Ultra Search Configuration
+# This file provides default settings. Environment variables override these.
+# See .env.example for environment variable format.
+
+# Domain configuration
+domains:
+  web_search:
+    enabled: true
+    default_provider: mock  # Change to serpapi, tavily, or brave when you have API keys
+
+  deep_research:
+    enabled: true
+    default_provider: openai  # Or perplexity
+
+  financial:
+    enabled: false
+    default_provider: null
+
+  legal:
+    enabled: false
+    default_provider: null
+
+  academic:
+    enabled: false
+    default_provider: null
+
+  social_media:
+    enabled: false
+    default_provider: null
+
+  business_intel:
+    enabled: false
+    default_provider: null
+
+  people_search:
+    enabled: false
+    default_provider: null
+
+  news:
+    enabled: false
+    default_provider: null
+
+  scraping:
+    enabled: false
+    default_provider: null
+
+# Execution settings
+max_concurrent_requests: 10
+default_timeout: 30.0
+retry_attempts: 3
