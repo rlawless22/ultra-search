@@ -31,8 +31,8 @@ src/ultra_search/
 │   └── executor.py # Async execution
 │
 ├── domains/        # Plug-and-play domains
-│   ├── web_search/    # SerpAPI, Tavily, Brave
-│   ├── deep_research/ # OpenAI, Perplexity
+│   ├── web_search/    # SerpAPI, Tavily, Brave, Parallel
+│   ├── deep_research/ # OpenAI, Perplexity, Parallel Tasks
 │   ├── financial/     # Polygon, Alpha Vantage
 │   ├── academic/      # Semantic Scholar, arXiv
 │   └── ...
@@ -55,18 +55,56 @@ Environment variables use the `ULTRA_` prefix:
 # API Keys
 ULTRA_OPENAI_API_KEY=sk-...
 ULTRA_SERPAPI_API_KEY=...
+ULTRA_PARALLEL_API_KEY=...
 
 # Domain settings
 ULTRA_DOMAINS__WEB_SEARCH__ENABLED=true
-ULTRA_DOMAINS__WEB_SEARCH__DEFAULT_PROVIDER=serpapi
+ULTRA_DOMAINS__WEB_SEARCH__DEFAULT_PROVIDER=parallel  # or serpapi, tavily, brave
+ULTRA_DOMAINS__DEEP_RESEARCH__DEFAULT_PROVIDER=parallel  # or openai, perplexity
 ```
 
 ## Available Tools
 
-- `search_web` - Web search via SerpAPI, Tavily, or Brave
+### Synchronous Tools (Return Results Immediately)
+- `search_web` - Web search via SerpAPI, Tavily, Brave, or Parallel
 - `search_news` - News article search
-- `deep_research` - AI-powered comprehensive research
+- `deep_research` - AI-powered research (use for quick/standard depth, < 5 minutes)
 - `quick_answer` - Fast factual answers
+
+### Async Tools (For Long-Running Research)
+**NEW!** Background research that can run for hours without timeout:
+
+- `start_deep_research_async` - Start research in background, returns task_id immediately
+- `check_research_status` - Check progress and status of a running task
+- `list_research_tasks` - List all research tasks (running, completed, failed)
+- `get_research_result` - Get full results when task completes
+- `cancel_research_task` - Cancel a running task
+
+**Use async tools for comprehensive research that takes 5+ minutes!**
+
+See [Async Research Guide](docs/async-research-guide.md) for details.
+
+### File Output Support
+
+All tools support saving results to files in multiple formats:
+
+```python
+# Save research to markdown
+deep_research(
+    query="AI trends 2026",
+    output_file="research/ai_trends.md"
+)
+
+# Save search results as JSON
+search_web(
+    query="quantum computing",
+    output_file="results.json"
+)
+```
+
+**Supported formats:** JSON (`.json`), Markdown (`.md`), HTML (`.html`), Plain Text (`.txt`)
+
+See [File Output Guide](docs/file-output-guide.md) for details.
 
 ## License
 

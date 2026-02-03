@@ -14,7 +14,7 @@ def get_research_provider(provider_name: str, settings: "Settings") -> BaseResea
     """Get a research provider instance by name.
 
     Args:
-        provider_name: Name of the provider (openai, perplexity)
+        provider_name: Name of the provider (openai, perplexity, parallel)
         settings: Application settings for API keys
 
     Returns:
@@ -33,11 +33,16 @@ def get_research_provider(provider_name: str, settings: "Settings") -> BaseResea
             PerplexityProvider,
         )
         providers["perplexity"] = PerplexityProvider
+    elif provider_name == "parallel":
+        from ultra_search.domains.deep_research.providers.parallel_tasks import (
+            ParallelTasksProvider,
+        )
+        providers["parallel"] = ParallelTasksProvider
 
     if provider_name not in providers:
         raise ValueError(
             f"Unknown research provider: {provider_name}. "
-            f"Available: openai, perplexity"
+            f"Available: openai, perplexity, parallel"
         )
 
     provider_cls = providers[provider_name]

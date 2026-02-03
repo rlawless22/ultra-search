@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 from ultra_search.core.base import BaseTool
 from ultra_search.core.models import ResearchResult, SearchResult
 from ultra_search.core.registry import register_tool
+from ultra_search.core.file_output import OutputFormat
 
 
 class DeepResearchInput(BaseModel):
@@ -23,6 +24,14 @@ class DeepResearchInput(BaseModel):
         default=True,
         description="Include source citations in results"
     )
+    output_file: str | None = Field(
+        default=None,
+        description="Optional file path to save results. Supports .json, .md, .txt, .html"
+    )
+    output_format: str | None = Field(
+        default=None,
+        description="Output format override (json, md, txt, html). Auto-detected from file extension if not specified."
+    )
 
 
 class DeepResearchOutput(BaseModel):
@@ -35,6 +44,7 @@ class DeepResearchOutput(BaseModel):
     follow_up_questions: list[str]
     provider: str
     model_used: str | None = None
+    output_file_path: str | None = None  # Path where results were saved, if applicable
 
 
 @register_tool(domain="deep_research")
@@ -64,6 +74,13 @@ class DeepResearch(BaseTool[DeepResearchInput, DeepResearchOutput]):
         Returns:
             Comprehensive research results
         """
+        from pathlib import Path
+        from ultra_search.core.file_output import (
+            FileOutputConfig,
+            OutputFormat,
+            write_result_to_file,
+        )
+
         provider = await self._get_provider()
         result = await provider.research(
             query=input_data.query,
@@ -71,7 +88,7 @@ class DeepResearch(BaseTool[DeepResearchInput, DeepResearchOutput]):
             include_sources=input_data.include_sources,
         )
 
-        return DeepResearchOutput(
+        output = DeepResearchOutput(
             query=input_data.query,
             summary=result.summary,
             detailed_answer=result.detailed_answer,
@@ -79,7 +96,35 @@ class DeepResearch(BaseTool[DeepResearchInput, DeepResearchOutput]):
             follow_up_questions=result.follow_up_questions,
             provider=provider.provider_name,
             model_used=result.model_used,
+            output_file_path=None,
         )
+
+        # Write to file if requested
+        if input_data.output_file:
+            # Detect format from extension or use override
+            if input_data.output_format:
+                format_str = input_data.output_format.lower()
+            else:
+                ext = Path(input_data.output_file).suffix.lstrip(".")
+                format_str = ext if ext in ["json", "md", "txt", "html"] else "json"
+
+            try:
+                output_format = OutputFormat(format_str)
+            except ValueError:
+                output_format = OutputFormat.JSON
+
+            config = FileOutputConfig(
+                path=input_data.output_file,
+                format=output_format,
+                append=False,
+                add_timestamp=True,
+                create_dirs=True,
+            )
+
+            written_path = await write_result_to_file(output, config)
+            output.output_file_path = str(written_path)
+
+        return output
 
     async def _get_provider(self) -> Any:
         """Get the appropriate research provider."""

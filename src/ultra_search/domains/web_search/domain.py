@@ -17,6 +17,14 @@ class SearchWebInput(BaseModel):
     query: str = Field(..., description="Search query")
     num_results: int = Field(default=10, ge=1, le=100, description="Number of results to return")
     search_type: str = Field(default="web", description="Type of search: web, news, images")
+    output_file: str | None = Field(
+        default=None,
+        description="Optional file path to save results. Supports .json, .md, .txt, .html"
+    )
+    output_format: str | None = Field(
+        default=None,
+        description="Output format override (json, md, txt, html). Auto-detected from file extension if not specified."
+    )
 
 
 class SearchWebOutput(BaseModel):
@@ -27,6 +35,7 @@ class SearchWebOutput(BaseModel):
     total_results: int | None = None
     provider: str
     search_type: str
+    output_file_path: str | None = None
 
 
 @register_tool(domain="web_search")
@@ -56,6 +65,13 @@ class SearchWeb(BaseTool[SearchWebInput, SearchWebOutput]):
         Returns:
             Search results from the configured provider
         """
+        from pathlib import Path
+        from ultra_search.core.file_output import (
+            FileOutputConfig,
+            OutputFormat,
+            write_result_to_file,
+        )
+
         # Get provider based on settings
         provider = await self._get_provider()
         results = await provider.search(
@@ -64,13 +80,41 @@ class SearchWeb(BaseTool[SearchWebInput, SearchWebOutput]):
             search_type=input_data.search_type,
         )
 
-        return SearchWebOutput(
+        output = SearchWebOutput(
             query=input_data.query,
             results=results,
             total_results=len(results),
             provider=provider.provider_name,
             search_type=input_data.search_type,
+            output_file_path=None,
         )
+
+        # Write to file if requested
+        if input_data.output_file:
+            # Detect format from extension or use override
+            if input_data.output_format:
+                format_str = input_data.output_format.lower()
+            else:
+                ext = Path(input_data.output_file).suffix.lstrip(".")
+                format_str = ext if ext in ["json", "md", "txt", "html"] else "json"
+
+            try:
+                output_format = OutputFormat(format_str)
+            except ValueError:
+                output_format = OutputFormat.JSON
+
+            config = FileOutputConfig(
+                path=input_data.output_file,
+                format=output_format,
+                append=False,
+                add_timestamp=True,
+                create_dirs=True,
+            )
+
+            written_path = await write_result_to_file(output, config)
+            output.output_file_path = str(written_path)
+
+        return output
 
     async def _get_provider(self) -> Any:
         """Get the appropriate search provider based on settings."""

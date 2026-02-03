@@ -15,7 +15,7 @@ def get_search_provider(provider_name: str, settings: "Settings") -> BaseSearchP
     """Get a search provider instance by name.
 
     Args:
-        provider_name: Name of the provider (serpapi, tavily, brave, mock)
+        provider_name: Name of the provider (serpapi, tavily, brave, parallel, mock)
         settings: Application settings for API keys
 
     Returns:
@@ -35,6 +35,9 @@ def get_search_provider(provider_name: str, settings: "Settings") -> BaseSearchP
     elif provider_name == "brave":
         from ultra_search.domains.web_search.providers.brave import BraveSearchProvider
         providers["brave"] = BraveSearchProvider
+    elif provider_name == "parallel":
+        from ultra_search.domains.web_search.providers.parallel import ParallelSearchProvider
+        providers["parallel"] = ParallelSearchProvider
 
     if provider_name not in providers:
         raise ValueError(
