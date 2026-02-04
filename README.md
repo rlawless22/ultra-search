@@ -66,10 +66,22 @@ ULTRA_DOMAINS__DEEP_RESEARCH__DEFAULT_PROVIDER=parallel  # or openai, perplexity
 ## Available Tools
 
 ### Synchronous Tools (Return Results Immediately)
+
+**General Research:**
 - `search_web` - Web search via SerpAPI, Tavily, Brave, or Parallel
 - `search_news` - News article search
 - `deep_research` - AI-powered research (use for quick/standard depth, < 5 minutes)
 - `quick_answer` - Fast factual answers
+
+**Carrier Vetting (NEW!):**
+- `check_fmcsa_authority` - DOT/MC lookup, safety ratings, authority status
+- `verify_business_kyb` - Business entity verification, liens, bankruptcies
+- `search_google_reviews` - Google reviews with fraud detection
+- `search_yelp_reviews` - Yelp reviews analysis
+- `aggregate_reviews` - Multi-platform review aggregation
+- `screen_sanctions` - Sanctions/watchlist screening
+- `search_adverse_media` - Negative news/fraud mentions
+- `monitor_entity_risk` - Combined risk assessment
 
 ### Async Tools (For Long-Running Research)
 **NEW!** Background research that can run for hours without timeout:

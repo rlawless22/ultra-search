@@ -1,0 +1,179 @@
+5) Reviews and reputation APIs (Google, Yelp, Trustpilot, and the reality)
+
+This part is tricky because many platforms restrict access.
+
+Google reviews (2 different worlds)
+
+Places API (Place Details)
+
+Can return place info like ratings and reviews (Place Details API; you request fields via FieldMask).
+
+For JS Places library, there’s explicit review retrieval via the reviews field.
+
+Business Profile APIs (My Business)
+
+Meant for managing your owned/managed business profiles; includes listing and replying to reviews.
+
+Key implication:
+
+For carrier due diligence, you usually don’t control the carrier’s profile → Business Profile API may not be usable unless you have authorized access. Places API is generally the “public place info” path.
+
+Yelp Fusion API
+
+Yelp provides an API for business search/matching and accessing Yelp business data.
+
+Trustpilot APIs
+
+Trustpilot has official API documentation for its APIs (often used by businesses / partners).
+
+How agents “find reviews” in practice (real workflow)
+
+Your agent should do listing resolution first, then pull reviews:
+
+Entity resolution / listing match
+
+Business name + address + phone → resolve Google Place ID / Yelp business ID / Trustpilot domain profile.
+
+Pull what’s available via official APIs
+
+Google Places Details (reviews subset + rating)
+
+Yelp Fusion business data
+
+Trustpilot APIs where permitted
+
+Fill gaps with search + extraction
+
+SERP search for "<carrier name>" + "reviews" + city/state, site:bbb.org, site:reddit.com, etc.
+
+Extract the pages via Firecrawl/Diffbot/Apify and classify complaints into a taxonomy.
+
+Detect review fraud patterns
+
+Time clustering, repeated phrasing, suspicious reviewer profiles, etc.
+
+(Worth noting: review manipulation is a known issue on major platforms; your system should treat reviews as signals, not truth.)
+
+6) DOT/FMCSA authority, safety, OOS, and carrier identity (the “must have”)
+FMCSA QCMobile API (official)
+
+FMCSA provides a developer API for real-time carrier queries including safety data.
+
+The docs list endpoints like:
+
+lookup by name / DOT / docket
+
+carrier basics
+
+cargo carried
+
+operation classification
+
+out-of-service
+
+docket numbers
+
+authority endpoints
+
+
+SAFER web + third-party wrappers
+
+SAFER is the public system for company safety data.
+
+There are also third-party “SAFER wrappers” offering historical snapshots and convenience endpoints (example: SaferWebAPI).
+
+Apify also has prebuilt scrapers for SAFER/FMCSA pages if you need to automate when API data is insufficient.
+
+Agent usage pattern
+
+FMCSA API = structured, reliable source-of-truth for identity/authority gating.
+
+Wrappers/scrapers = fill gaps (historical snapshots, UI-only data) while respecting ToS and your risk posture.
+
+7) Business verification + corporate records (KYB)
+
+These are extremely useful for “is this a real business and who controls it?” plus liens/bankruptcy and related signals.
+
+Middesk (business verification / KYB API)
+
+Middesk “Verify a business” quickstart and API docs show workflow-style verification.
+
+Their API schema includes fields for things like liens, litigations, watchlist screening, and even FMCSA registrations (based on the API response schema).
+
+OpenCorporates (corporate entity data)
+
+OpenCorporates offers a REST API for corporate entity information.
+
+D&B Direct+ (business data & enrichment)
+
+D&B Direct+ provides APIs and its own documentation portal.
+
+Experian (business information / onboarding data)
+
+Experian positions its business data APIs for credit/compliance onboarding via an API hub/developer portal.
+
+Trulioo Business Verification
+
+Trulioo includes Business Verification guides and broader KYB/KYC capabilities.
+
+Why KYB tools matter for moving carriers
+
+Many “bad actors” are serial rebrands. KYB tools help you connect: legal entity ⇄ addresses ⇄ principals ⇄ related entities.
+
+8) Litigation, court documents, and legal analytics APIs
+
+If you want to programmatically find lawsuits/judgments relevant to fraud, claims, negligence, etc.:
+
+CourtListener (Free Law Project) + RECAP
+
+CourtListener provides a REST API that covers case law and PACER/RECAP data.
+
+RECAP APIs are specifically for PACER-originated documents in the RECAP Archive.
+
+UniCourt Enterprise API
+
+UniCourt provides an Enterprise API (with SDKs) intended for structured court data access.
+
+Agent workflow tip
+
+Litigation search is high-noise: require the agent to (a) match identity precisely (address/DBA/principal), (b) classify case type, (c) extract dispositions/judgments when available, and (d) store the docket links as evidence.
+
+9) Background checks + principal screening APIs (since you already do this)
+Background screening platforms (API-first-ish)
+
+Checkr (background check API docs; plus “Checkr Trust” API for certain trust/screening use cases).
+
+HireRight Connect API (ordering/tracking background screens; RESTful integration).
+
+Sterling API (background checks integrated end-to-end; recurring screenings mentioned in API docs).
+
+Watchlist / sanctions / PEP screening
+
+ComplyAdvantage API (REST API for screening/monitoring workflows).
+
+OpenSanctions API (query the OpenSanctions entity graph; match/search entities).
+
+Important design note:
+Even if you’re allowed to run these checks, have the agent output a risk finding + evidence references, not raw sensitive personal data, unless you truly need it. Make “minimal retention” a first-class design goal.
+
+10) News / adverse media / complaint monitoring APIs
+
+These help detect “the carrier just got exposed / sued / raided / had a TV investigation.”
+
+NewsAPI: HTTP REST API for searching and retrieving articles.
+
+GDELT Doc API: global news/event database with a full-text search API.
+
+(Optional) Event Registry / NewsAPI.ai (another news intelligence API ecosystem).
+
+Agent usage pattern
+
+Run daily/weekly searches on:
+
+carrier legal name, DBA, phone, address
+
+principal names
+
+“hostage load” / “moving scam” terms near the brand
+
+Alert only on high-confidence matches.

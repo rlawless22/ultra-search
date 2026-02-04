@@ -55,11 +55,27 @@ class Settings(BaseSettings):
     tavily_api_key: str | None = None
     brave_api_key: str | None = None
     perplexity_api_key: str | None = None
+    parallel_api_key: str | None = None
+
+    # Regulatory compliance
+    fmcsa_api_key: str | None = None
+    middesk_api_key: str | None = None
+
+    # Reviews
+    google_places_api_key: str | None = None
+    yelp_api_key: str | None = None
+
+    # Risk screening
+    opensanctions_api_key: str | None = None
+    newsapi_api_key: str | None = None
 
     # === Domain Configurations ===
     domains: dict[str, DomainConfig] = Field(default_factory=lambda: {
         "web_search": DomainConfig(enabled=True, default_provider="mock"),
         "deep_research": DomainConfig(enabled=True, default_provider="openai"),
+        "regulatory_compliance": DomainConfig(enabled=True, default_provider="fmcsa"),
+        "reviews": DomainConfig(enabled=True, default_provider="google_places"),
+        "risk_screening": DomainConfig(enabled=True, default_provider="opensanctions"),
         "financial": DomainConfig(enabled=False),
         "legal": DomainConfig(enabled=False),
         "academic": DomainConfig(enabled=False),

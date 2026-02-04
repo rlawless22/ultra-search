@@ -6,8 +6,11 @@ Each subdirectory is a self-contained domain that can be:
 - Extended with new providers
 
 Available domains:
-- web_search: General web search (SerpAPI, Tavily, Brave, etc.)
-- deep_research: AI-powered research (OpenAI, Perplexity, etc.)
+- web_search: General web search (SerpAPI, Tavily, Brave, Parallel)
+- deep_research: AI-powered research (OpenAI, Perplexity, Parallel)
+- regulatory_compliance: Carrier authority and business verification (FMCSA, Middesk)
+- reviews: Multi-platform review aggregation (Google Places, Yelp)
+- risk_screening: Sanctions screening and adverse media (OpenSanctions, NewsAPI)
 - financial: Financial data and market research
 - legal: Legal documents and case law
 - academic: Academic papers and research
@@ -28,5 +31,20 @@ except ImportError:
 
 try:
     from ultra_search.domains import deep_research
+except ImportError:
+    pass
+
+try:
+    from ultra_search.domains import regulatory_compliance
+except ImportError:
+    pass
+
+try:
+    from ultra_search.domains import reviews
+except ImportError:
+    pass
+
+try:
+    from ultra_search.domains import risk_screening
 except ImportError:
     pass
